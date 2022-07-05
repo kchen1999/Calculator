@@ -57,9 +57,12 @@ function populateDisplay() {
         btn.addEventListener("click", () => {
             if(btn.textContent === "DEL") {
                 if(displayValue.length === 1) {
-                    if(lastValue === "firstNum" || lastValue === "operator") {
+                    if(lastValue === "firstNum") {
                         firstNum = "";
                         displayValue = ""; 
+                    }
+                    else if(lastValue === "operator") {
+                        displayValue = displayValue.substring(0, displayValue.length - 1); 
                     }
                     else {
                         secondNum = "";
@@ -68,10 +71,10 @@ function populateDisplay() {
                 }
                 else {
                     displayValue = displayValue.substring(0, displayValue.length - 1); 
-                    if(lastValue === "firstNum" || lastValue === "operator") {
+                    if(lastValue === "firstNum") {
                         firstNum = displayValue;
                     }
-                    else {
+                    else if(lastValue === "secondNum") {
                         secondNum = displayValue;; 
                     }
                 }
