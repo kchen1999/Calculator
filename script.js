@@ -63,6 +63,8 @@ function populateDisplay() {
             }
             else if(btn.textContent === "=" && lastValue === "secondNum") {
                 displayValue = operate(parseInt(firstNum), parseInt(secondNum), operator) + ""; 
+                equation.textContent = firstNum + " " + operator + " " + secondNum; 
+                answer.textContent = displayValue;
                 firstNum = displayValue; 
                 lastValue = "firstNum"; 
                 operator = "";
@@ -71,20 +73,30 @@ function populateDisplay() {
             else if(lastValue === "secondNum" && isOperator(btn.textContent)) {
                 displayValue = operate(parseInt(firstNum), parseInt(secondNum), operator) + ""; 
                 firstNum = displayValue; 
-                lastValue = "secondNum"; 
-                operator = "";
+                lastValue = "operator"; 
+                operator = btn.textContent;
                 secondNum = "";
+                equation.textContent = displayValue + " " + operator; 
+                answer.textContent = displayValue;  
             }
             else if(isOperator(btn.textContent)){
                 operator = btn.textContent; 
+                equation.textContent = firstNum + " " + operator; 
                 lastValue = "operator";
             }
             else if(lastValue === "firstNum") { 
                 firstNum += btn.textContent; 
+                displayValue += firstNum; 
+                answer.textContent = displayValue; 
             }
-            else if(lastValue === "operator" || lastValue === "secondNum") {
+            else {
                 secondNum += btn.textContent;
+                if(lastValue === "operator") {
+                    displayValue = ""; 
+                }
                 lastValue = "secondNum"; 
+                displayValue += secondNum; 
+                answer.textContent = displayValue; 
             }
         });
     });
