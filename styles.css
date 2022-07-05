@@ -1,19 +1,58 @@
 body {
     display: flex;
     justify-content: center;
-    padding-top: 60px;
-    background-color:darkslateblue; 
+    padding-top: 90px;
+    background-color:#4d88ff;
 }
 
-.container {
+.outer-container {
     height: 450px; 
     width: 360px; 
     background-color:lightgrey; 
-    padding: 24px;
+    border-radius: 8px;
+    padding-top: 24px; 
+    padding-left: 24px;
+    padding-right: 24px; 
 }
 
-.screen {
-   height: 150px; 
-   background-color:darkgray;
+.display {
+    height: 84px; 
+    border-radius: 9px;
+    background-color: #4d88ff;
+    padding: 24px; 
+    text-align: right;
 }
 
+p {
+    color: white;
+}
+
+.row-container {
+    display: flex; 
+    width: 360px; 
+    justify-content: space-between;
+}
+
+.bottom-container {
+    height: 315px; 
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+
+button {
+    height: 54px;
+    width: 60px; 
+    border-radius: 12px; 
+    font-size: 20px;
+}
+
+
+
+.equation {
+    font-size: 20px; 
+}
+
+.answer {
+    font-size: 24px;
+}
