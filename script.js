@@ -56,7 +56,26 @@ function populateDisplay() {
     btns.forEach(btn => {
         btn.addEventListener("click", () => {
             if(btn.textContent === "DEL") {
-                
+                if(displayValue.length === 1) {
+                    if(lastValue === "firstNum" || lastValue === "operator") {
+                        firstNum = "";
+                        displayValue = ""; 
+                    }
+                    else {
+                        secondNum = "";
+                        displayValue = ""; 
+                    }
+                }
+                else {
+                    displayValue = displayValue.substring(0, displayValue.length - 1); 
+                    if(lastValue === "firstNum" || lastValue === "operator") {
+                        firstNum = displayValue;
+                    }
+                    else {
+                        secondNum = displayValue;; 
+                    }
+                }
+                answer.textContent = displayValue;
             }
             else if(btn.textContent === "AC") {
                 
@@ -86,7 +105,7 @@ function populateDisplay() {
             }
             else if(lastValue === "firstNum") { 
                 firstNum += btn.textContent; 
-                displayValue += firstNum; 
+                displayValue = firstNum; 
                 answer.textContent = displayValue; 
             }
             else {
@@ -95,7 +114,7 @@ function populateDisplay() {
                     displayValue = ""; 
                 }
                 lastValue = "secondNum"; 
-                displayValue += secondNum; 
+                displayValue = secondNum; 
                 answer.textContent = displayValue; 
             }
         });
