@@ -38,14 +38,9 @@ function isOperator(str) {
 }
 
 function populateDisplay() {
-    const display = document.querySelector('.display'); 
-    const equation = document.createElement("p"); 
-    const answer = document.createElement("p"); 
-    equation.classList.add(".equation");
-    answer.classList.add(".answer"); 
-    display.appendChild(equation); 
-    display.appendChild(answer); 
-
+    const equation = document.querySelector('.equation-display'); 
+    const answer = document.querySelector('.answer-display'); 
+   
     let firstNum = "";
     let operator = "";
     let secondNum = ""; 
@@ -81,7 +76,12 @@ function populateDisplay() {
                 answer.textContent = displayValue;
             }
             else if(btn.textContent === "AC") {
-                
+                displayValue = "0";
+                firstNum = "";
+                operator = "";
+                secondNum = "";
+                equation.textContent = ""; 
+                answer.textContent = displayValue;
             }
             else if(btn.textContent === "=" && lastValue === "secondNum") {
                 displayValue = operate(parseInt(firstNum), parseInt(secondNum), operator) + ""; 
