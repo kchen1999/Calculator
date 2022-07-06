@@ -37,9 +37,19 @@ function isOperator(str) {
     return false; 
 }
 
+function disableDecimal(num, decimalButton) {
+    if(num.includes(".")) {
+        decimalButton.disabled = true; 
+    }   
+    else {
+        decimalButton.disabled = false; 
+    }
+}
+
 function populateDisplay() {
     const equation = document.querySelector('.equation-display'); 
     const answer = document.querySelector('.answer-display'); 
+    const decimalButton = document.getElementById("decimal"); 
    
     let firstNum = "";
     let operator = "";
@@ -80,13 +90,15 @@ function populateDisplay() {
                 firstNum = "";
                 operator = "";
                 secondNum = "";
+                decimalButton.disabled = false; 
                 equation.textContent = ""; 
                 answer.textContent = displayValue;
             }
-            else if(btn.textContent === "=" && lastValue === "secondNum") {
+            else if(lastValue === "secondNum" && btn.textContent === "=") {
                 displayValue = operate(parseFloat(firstNum), parseFloat(secondNum), operator) + ""; 
                 equation.textContent = firstNum + " " + operator + " " + secondNum + " ="; 
                 answer.textContent = displayValue;
+                disableDecimal(displayValue, decimalButton);
                 firstNum = displayValue; 
                 lastValue = "firstNum"; 
                 operator = "";
@@ -98,9 +110,15 @@ function populateDisplay() {
                 lastValue = "operator"; 
                 operator = btn.textContent;
                 secondNum = "";
+                disableDecimal(displayValue, decimalButton);
                 equation.textContent = displayValue + " " + operator; 
                 answer.textContent = displayValue;  
             }
+            else if(lastValue === "firstNum" && btn.textContent === "-") {
+                firstNum += btn.textContent; 
+                displayValue = firstNum; 
+                answer.textContent = displayValue; 
+            } 
             else if(isOperator(btn.textContent)){
                 operator = btn.textContent; 
                 equation.textContent = firstNum + " " + operator; 
@@ -109,15 +127,17 @@ function populateDisplay() {
             else if(lastValue === "firstNum") { 
                 firstNum += btn.textContent; 
                 displayValue = firstNum; 
+                disableDecimal(displayValue, decimalButton);
                 answer.textContent = displayValue; 
             }
             else {
-                secondNum += btn.textContent;
+                secondNum += btn.textContent; 
                 if(lastValue === "operator") {
                     displayValue = ""; 
                 }
                 lastValue = "secondNum"; 
                 displayValue = secondNum; 
+                disableDecimal(displayValue, decimalButton); 
                 answer.textContent = displayValue; 
             }
         });
