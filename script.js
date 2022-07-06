@@ -57,7 +57,6 @@ function populateDisplay() {
     const equation = document.querySelector('.equation-display');
     const answer = document.querySelector('.answer-display');
     const decimalButton = document.getElementById("decimal");
-
     let firstNum = "";
     let operator = "";
     let secondNum = "";
@@ -132,10 +131,12 @@ function populateDisplay() {
                 lastValue = "operator";
             }
             else if (lastValue === "firstNum") {
-                firstNum += btn.textContent;
-                displayValue = firstNum;
-                disableDecimal(displayValue, decimalButton);
-                answer.textContent = displayValue;
+                if(btn.textContent != "=") {
+                    firstNum += btn.textContent;
+                    displayValue = firstNum;
+                    disableDecimal(displayValue, decimalButton);
+                    answer.textContent = displayValue;
+                }
             }
             else {
                 if(operator === "÷" && btn.textContent === "0") {
