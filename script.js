@@ -31,7 +31,7 @@ function operate(x, y, operator) {
 }
 
 function isOperator(str) {
-    if(str === "x" || str === "÷" || str === "+" || str === "-" || str === "^") {
+    if(str === "x" || str === "÷" || str === "+" || str === "-") {
         return true; 
     }
     return false; 
@@ -84,8 +84,8 @@ function populateDisplay() {
                 answer.textContent = displayValue;
             }
             else if(btn.textContent === "=" && lastValue === "secondNum") {
-                displayValue = operate(parseInt(firstNum), parseInt(secondNum), operator) + ""; 
-                equation.textContent = firstNum + " " + operator + " " + secondNum; 
+                displayValue = operate(parseFloat(firstNum), parseFloat(secondNum), operator) + ""; 
+                equation.textContent = firstNum + " " + operator + " " + secondNum + " ="; 
                 answer.textContent = displayValue;
                 firstNum = displayValue; 
                 lastValue = "firstNum"; 
@@ -93,7 +93,7 @@ function populateDisplay() {
                 secondNum = "";
             }
             else if(lastValue === "secondNum" && isOperator(btn.textContent)) {
-                displayValue = operate(parseInt(firstNum), parseInt(secondNum), operator) + ""; 
+                displayValue = operate(parseFloat(firstNum), parseFloat(secondNum), operator) + ""; 
                 firstNum = displayValue; 
                 lastValue = "operator"; 
                 operator = btn.textContent;
