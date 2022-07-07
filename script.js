@@ -67,27 +67,12 @@ function populateDisplay() {
     btns.forEach(btn => {
         btn.addEventListener("click", () => {
             if (btn.textContent === "DEL") {
-                if (displayValue.length === 1) {
-                    if (lastValue === "firstNum") {
-                        firstNum = "";
-                        displayValue = "";
-                    }
-                    else if (lastValue === "operator") {
-                        displayValue = displayValue.substring(0, displayValue.length - 1);
-                    }
-                    else {
-                        secondNum = "";
-                        displayValue = "";
-                    }
+                displayValue = displayValue.slice(0, - 1);
+                if (lastValue === "firstNum") {
+                    firstNum = displayValue;
                 }
-                else {
-                    displayValue = displayValue.substring(0, displayValue.length - 1);
-                    if (lastValue === "firstNum") {
-                        firstNum = displayValue;
-                    }
-                    else if (lastValue === "secondNum") {
-                        secondNum = displayValue;;
-                    }
+                else if (lastValue === "secondNum") {
+                    secondNum = displayValue;;
                 }
                 answer.textContent = displayValue;
             }
