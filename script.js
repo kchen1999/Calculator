@@ -138,6 +138,5 @@ function populateDisplay() {
         }); 
     });
 }
-
 populateDisplay();
 
